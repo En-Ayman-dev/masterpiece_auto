@@ -1,15 +1,21 @@
 <?php
 /**
  * PulseForge Auto Service - Header Template
- * رأس الصفحة - يحتوي على DOCTYPE، Meta Tags، Navigation، وبداية الـ Body.
+ * تم التحديث: إصلاح مشكلة المسارات (Dynamic Pathing)
  */
 
-// تحديد اللغة الحالية (افتراضياً: عربي)
+// تحديد اللغة الحالية
 $current_lang = $_GET['lang'] ?? 'ar';
 $is_rtl = ($current_lang === 'ar');
 $lang_toggle = ($current_lang === 'ar') ? 'en' : 'ar';
 
-// نصوص الواجهة (Localization)
+// --- [FIX START] نظام تحديد المسار الديناميكي ---
+// التحقق مما إذا كنا داخل مجلد فرعي (مثل pages)
+$in_pages_dir = strpos($_SERVER['SCRIPT_NAME'], '/pages/') !== false;
+// إذا كنا في صفحة داخلية نعود للخلف خطوة (../)، وإلا نبقى في الجذر (./)
+$base_path = $in_pages_dir ? '../' : './';
+// --- [FIX END] ---
+
 $texts = [
     'ar' => [
         'home'      => 'الرئيسية',
@@ -41,20 +47,13 @@ $t = $texts[$current_lang];
     
     <title>PulseForge | النبض الآلي - خدمات السيارات الفخمة</title>
     
-    <!-- Google Fonts - دعم اللغة العربية -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome للأيقونات -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- ملف CSS الرئيسي -->
-    <link rel="stylesheet" href="/assets/css/style.css">
-    
-    <!-- AOS Library للأنميشنات عند التمرير -->
+    <link rel="stylesheet" href="<?php echo $base_path; ?>assets/css/style.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <style>
-        /* تصحيحات RTL/LTR سريعة */
         <?php if ($is_rtl): ?>
             body { font-family: 'Cairo', sans-serif; }
             .navbar-nav { flex-direction: row-reverse; }
@@ -65,20 +64,18 @@ $t = $texts[$current_lang];
     </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
     <nav class="navbar navbar-dark bg-dark fixed-top" style="background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%) !important; box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/" style="font-size: 1.5rem; font-weight: 700; color: #00ffff !important; text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);">
+            <a class="navbar-brand" href="<?php echo $base_path; ?>index.php?lang=<?php echo $current_lang; ?>" style="font-size: 1.5rem; font-weight: 700; color: #00ffff !important; text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);">
                 <i class="fas fa-bolt"></i> PulseForge
             </a>
             
             <div class="navbar-nav" style="display: flex; gap: 1rem;">
-                <a class="nav-link" href="/?lang=<?php echo $current_lang; ?>"><?php echo $t['home']; ?></a>
-                <a class="nav-link" href="/pages/services.php?lang=<?php echo $current_lang; ?>"><?php echo $t['services']; ?></a>
-                <a class="nav-link" href="/pages/booking_wizard.php?lang=<?php echo $current_lang; ?>"><?php echo $t['booking']; ?></a>
-                <a class="nav-link" href="/pages/track_status.php?lang=<?php echo $current_lang; ?>"><?php echo $t['track']; ?></a>
+                <a class="nav-link" href="<?php echo $base_path; ?>index.php?lang=<?php echo $current_lang; ?>"><?php echo $t['home']; ?></a>
+                <a class="nav-link" href="<?php echo $base_path; ?>pages/services.php?lang=<?php echo $current_lang; ?>"><?php echo $t['services']; ?></a>
+                <a class="nav-link" href="<?php echo $base_path; ?>pages/booking_wizard.php?lang=<?php echo $current_lang; ?>"><?php echo $t['booking']; ?></a>
+                <a class="nav-link" href="<?php echo $base_path; ?>pages/track_status.php?lang=<?php echo $current_lang; ?>"><?php echo $t['track']; ?></a>
                 
-                <!-- Language Toggle Button -->
                 <a class="nav-link" href="?lang=<?php echo $lang_toggle; ?>" style="background: rgba(0, 255, 255, 0.1); padding: 0.5rem 1rem; border-radius: 5px; border: 1px solid #00ffff;">
                     <i class="fas fa-globe"></i> <?php echo $t['language']; ?>
                 </a>
@@ -86,5 +83,4 @@ $t = $texts[$current_lang];
         </div>
     </nav>
     
-    <!-- Spacer for fixed navbar -->
     <div style="height: 70px;"></div>

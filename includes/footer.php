@@ -93,18 +93,13 @@ $ft = $footer_texts[$current_lang];
             </div>
         </div>
     </footer>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     
-    <!-- AOS Library JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
-    <!-- Main JS File -->
-    <script src="/assets/js/main.js"></script>
+    <script src="<?php echo $base_path; ?>assets/js/main.js"></script>
     
     <script>
-        // Initialize AOS for scroll animations
         AOS.init({
             duration: 1000,
             once: true,

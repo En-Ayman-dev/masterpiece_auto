@@ -592,3 +592,625 @@ body[dir="rtl"] {
 .mt-5 { margin-top: 3rem; }
 .mb-5 { margin-bottom: 3rem; }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+/**
+ * PulseForge Auto Service - Design System V2.0
+ * Theme: Cyberpunk Luxury (Dark Mode, Neon, Glassmorphism)
+ */
+
+/* ===== 1. Variables & Reset ===== */
+:root {
+    /* Colors */
+    --bg-dark: #050505;
+    --bg-panel: #0a0f1c;
+    --primary-gradient: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+    
+    --accent-cyan: #00f3ff;
+    --accent-cyan-dim: rgba(0, 243, 255, 0.1);
+    --accent-orange: #ff6b35;
+    --accent-orange-dim: rgba(255, 107, 53, 0.1);
+    --accent-gold: #ffd700;
+    
+    --text-main: #ffffff;
+    --text-muted: #94a3b8;
+    
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-blur: blur(10px);
+    
+    --shadow-glow: 0 0 20px rgba(0, 243, 255, 0.15);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--bg-dark);
+    background-image: 
+        radial-gradient(circle at 15% 50%, rgba(0, 243, 255, 0.03) 0%, transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(255, 107, 53, 0.03) 0%, transparent 25%);
+    color: var(--text-main);
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+body[dir="rtl"] { font-family: 'Cairo', sans-serif; }
+
+/* ===== 2. Utilities & Components ===== */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+/* Glass Card Effect */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    border-radius: 16px;
+}
+
+/* Neon Text */
+.text-neon {
+    color: var(--accent-cyan);
+    text-shadow: 0 0 10px var(--accent-cyan-dim);
+}
+
+/* ===== 3. Navigation ===== */
+.navbar {
+    background: rgba(10, 14, 39, 0.8) !important;
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--glass-border);
+    padding: 1rem 0;
+    transition: all 0.3s ease;
+}
+
+.nav-link {
+    position: relative;
+    color: var(--text-muted) !important;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--accent-cyan) !important;
+    text-shadow: 0 0 8px var(--accent-cyan-dim);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background: var(--accent-cyan);
+    transition: width 0.3s;
+}
+
+.nav-link:hover::after { width: 100%; }
+
+/* ===== 4. Hero Section ===== */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 8rem 2rem 4rem;
+}
+
+.hero-bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(180deg, rgba(5,5,5,0) 0%, var(--bg-dark) 100%),
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill="rgba(255,255,255,0.02)" x="0" y="0" width="1" height="1"/></svg>'); /* Micro-grid pattern */
+    z-index: -1;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    background: linear-gradient(to right, #fff, var(--text-muted));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+/* ===== 5. Buttons (Neon Style) ===== */
+.btn-neon {
+    padding: 12px 35px;
+    border-radius: 50px; /* Modern Pill Shape */
+    border: 1px solid var(--accent-cyan);
+    background: rgba(0, 243, 255, 0.05);
+    color: var(--accent-cyan);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.1);
+}
+
+.btn-neon:hover {
+    background: var(--accent-cyan);
+    color: #000;
+    box-shadow: 0 0 30px rgba(0, 243, 255, 0.4);
+    transform: translateY(-3px);
+}
+
+.btn-orange {
+    border-color: var(--accent-orange);
+    color: var(--accent-orange);
+    background: rgba(255, 107, 53, 0.05);
+    box-shadow: 0 0 15px rgba(255, 107, 53, 0.1);
+}
+
+.btn-orange:hover {
+    background: var(--accent-orange);
+    color: #fff;
+    box-shadow: 0 0 30px rgba(255, 107, 53, 0.4);
+}
+
+/* ===== 6. Cards & Features ===== */
+.feature-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 2.5rem;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent-cyan);
+    box-shadow: var(--shadow-glow);
+}
+
+.feature-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: var(--accent-cyan);
+    margin-bottom: 1.5rem;
+    transition: 0.4s;
+}
+
+.feature-card:hover .feature-icon {
+    background: var(--accent-cyan);
+    color: #000;
+    transform: rotateY(180deg);
+}
+
+/* ===== 7. Forms (Glass Inputs) ===== */
+.form-group label {
+    display: block;
+    color: var(--text-muted);
+    margin-bottom: 0.8rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 15px 20px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    color: #fff;
+    font-family: inherit;
+    transition: 0.3s;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--accent-cyan);
+    background: rgba(0, 243, 255, 0.02);
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.1);
+}
+
+/* ===== 8. Timeline (Tracking) ===== */
+.status-timeline {
+    position: relative;
+    padding-left: 2rem;
+    border-left: 2px solid var(--glass-border);
+}
+
+.status-item {
+    position: relative;
+    margin-bottom: 2.5rem;
+    padding-left: 2rem;
+}
+
+.status-dot {
+    position: absolute;
+    left: -2.6rem;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    background: var(--bg-dark);
+    border: 2px solid var(--text-muted);
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.status-item.active .status-dot {
+    background: var(--accent-cyan);
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 15px var(--accent-cyan);
+}
+
+.status-item.completed .status-dot {
+    background: var(--accent-orange);
+    border-color: var(--accent-orange);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero h1 { font-size: 2.5rem; }
+    .navbar { backdrop-filter: blur(20px); }
+}
+/**
+ * PulseForge Auto Service - Design System V2.0
+ * Theme: Cyberpunk Luxury (Dark Mode, Neon, Glassmorphism)
+ * Author: Senior UI/UX Specialist
+ */
+
+/* =========================================
+   1. ROOT VARIABLES & THEME CONFIG
+   ========================================= */
+:root {
+    /* --- Core Colors --- */
+    --bg-dark: #050505;
+    --bg-panel: #0a0f1c;
+    --primary-gradient: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+    
+    /* --- Neon Accents --- */
+    --accent-cyan: #00f3ff;
+    --accent-cyan-dim: rgba(0, 243, 255, 0.15);
+    --accent-orange: #ff6b35;
+    --accent-orange-dim: rgba(255, 107, 53, 0.15);
+    --accent-gold: #ffd700;
+    
+    /* --- Typography --- */
+    --text-main: #ffffff;
+    --text-muted: #94a3b8;
+    
+    /* --- Glassmorphism Tokens --- */
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-blur: blur(20px);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    
+    /* --- Effects --- */
+    --shadow-glow: 0 0 20px rgba(0, 243, 255, 0.2);
+    --transition-fast: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* =========================================
+   2. GLOBAL RESET & BASE STYLES
+   ========================================= */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    background-color: var(--bg-dark);
+    /* Subtle background grid pattern */
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        radial-gradient(circle at 15% 50%, rgba(0, 243, 255, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 85% 30%, rgba(255, 107, 53, 0.05) 0%, transparent 40%);
+    background-size: 50px 50px, 50px 50px, 100% 100%, 100% 100%;
+    color: var(--text-main);
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+body[dir="rtl"] { font-family: 'Cairo', sans-serif; }
+
+a { text-decoration: none; }
+ul { list-style: none; }
+
+/* =========================================
+   3. UTILITY CLASSES (The Building Blocks)
+   ========================================= */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+.text-center { text-align: center; }
+
+/* The Glass Panel Effect (Used Everywhere) */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    border-radius: 20px;
+    transition: var(--transition-fast);
+}
+
+.glass-panel:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+}
+
+/* Typography Effects */
+.text-neon {
+    color: var(--accent-cyan);
+    text-shadow: 0 0 15px var(--accent-cyan-dim);
+    letter-spacing: 0.5px;
+}
+
+/* =========================================
+   4. NAVIGATION BAR
+   ========================================= */
+/* (Styles are mostly handled in header.php for dynamic scroll, 
+   but base styles are here) */
+.navbar-brand {
+    transition: var(--transition-bounce);
+}
+.navbar-brand:hover {
+    transform: scale(1.05);
+}
+
+/* =========================================
+   5. HERO SECTION
+   ========================================= */
+.hero {
+    position: relative;
+    padding: 8rem 2rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.hero-bg-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at center, transparent 0%, var(--bg-dark) 90%);
+    z-index: -1;
+}
+
+.hero h1 {
+    font-weight: 800;
+    line-height: 1.2;
+    background: linear-gradient(to right, #fff, var(--text-muted));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    /* Fallback if neon class is not used */
+}
+
+/* =========================================
+   6. BUTTONS (Neon System)
+   ========================================= */
+.btn-neon {
+    padding: 12px 35px;
+    border-radius: 50px;
+    border: 1px solid var(--accent-cyan);
+    background: rgba(0, 243, 255, 0.05);
+    color: var(--accent-cyan);
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: var(--transition-bounce);
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-neon:hover {
+    background: var(--accent-cyan);
+    color: #000;
+    box-shadow: 0 0 30px rgba(0, 243, 255, 0.5);
+    transform: translateY(-3px);
+}
+
+.btn-neon:active { transform: translateY(-1px); }
+
+/* Orange Variant */
+.btn-orange {
+    border-color: var(--accent-orange);
+    color: var(--accent-orange);
+    background: rgba(255, 107, 53, 0.05);
+    box-shadow: 0 0 15px rgba(255, 107, 53, 0.1);
+}
+
+.btn-orange:hover {
+    background: var(--accent-orange);
+    color: #fff;
+    box-shadow: 0 0 30px rgba(255, 107, 53, 0.5);
+}
+
+/* Small Variant */
+.btn-neon-sm {
+    padding: 8px 20px;
+    font-size: 0.85rem;
+}
+
+/* =========================================
+   7. FORMS (Glass Inputs)
+   ========================================= */
+.form-group { margin-bottom: 1.5rem; }
+
+.form-group label {
+    display: block;
+    color: var(--text-muted);
+    margin-bottom: 0.8rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 15px 20px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    color: #fff;
+    font-family: inherit;
+    transition: var(--transition-fast);
+}
+
+/* Remove default appearance */
+select { -webkit-appearance: none; appearance: none; }
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--accent-cyan);
+    background: rgba(0, 243, 255, 0.05);
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.1);
+}
+
+input:focus + label { color: var(--accent-cyan); }
+
+/* =========================================
+   8. WIZARD & CARDS
+   ========================================= */
+.wizard-progress {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.wizard-progress::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 0; width: 100%; height: 2px;
+    background: var(--glass-border);
+    transform: translateY(-50%);
+    z-index: 0;
+}
+
+.progress-step {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--bg-dark);
+    border: 2px solid var(--glass-border);
+    color: var(--text-muted);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    position: relative; z-index: 1;
+    transition: var(--transition-fast);
+}
+
+.progress-step.active {
+    border-color: var(--accent-cyan);
+    background: var(--accent-cyan);
+    color: #000;
+    box-shadow: 0 0 20px var(--accent-cyan);
+    transform: scale(1.1);
+}
+
+.service-icon-btn {
+    cursor: pointer;
+    text-align: center;
+    transition: var(--transition-fast);
+    background: transparent; /* Handled by glass-panel */
+}
+
+.service-icon-btn:hover, .service-icon-btn.active {
+    border-color: var(--accent-cyan);
+    background: rgba(0, 243, 255, 0.1);
+    transform: translateY(-5px);
+}
+
+.service-icon-btn.active i { color: #fff; }
+
+/* =========================================
+   9. TIMELINE & TRACKING
+   ========================================= */
+.status-tracker {
+    position: relative;
+    padding-left: 1rem;
+}
+
+.status-timeline {
+    position: relative;
+    border-left: 2px solid var(--glass-border);
+    margin-left: 10px;
+    padding: 10px 0;
+}
+
+.status-item {
+    position: relative;
+    padding-left: 2.5rem;
+    margin-bottom: 2.5rem;
+    opacity: 0.5;
+    transition: var(--transition-fast);
+}
+
+.status-item:last-child { margin-bottom: 0; }
+
+.status-item.active, .status-item.completed {
+    opacity: 1;
+}
+
+.status-dot {
+    position: absolute;
+    left: -11px; top: 0;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: var(--bg-dark);
+    border: 2px solid var(--text-muted);
+    transition: var(--transition-bounce);
+}
+
+.status-item.active .status-dot {
+    background: var(--accent-cyan);
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 15px var(--accent-cyan);
+    transform: scale(1.2);
+}
+
+.status-item.completed .status-dot {
+    background: var(--accent-orange);
+    border-color: var(--accent-orange);
+}
+
+/* =========================================
+   10. ANIMATIONS
+   ========================================= */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.wizard-step.active, .fade-in-up {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* =========================================
+   11. RESPONSIVE
+   ========================================= */
+@media (max-width: 768px) {
+    .hero { padding-top: 6rem; }
+    .hero h1 { font-size: 2.5rem; }
+    
+    .wizard-container { padding: 1.5rem !important; margin-top: -3rem !important; }
+    
+    .service-icons { grid-template-columns: 1fr; }
+    
+    .form-group input { padding: 12px; }
+}
